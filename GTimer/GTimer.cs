@@ -38,6 +38,8 @@ public class GTimer : Timer
         set => Interval = value.TotalMilliseconds;
     }
 
+
+
     /// <summary>
     /// Initializes a new instance of the <see cref='GTimer'/> class, with the properties set to initial values.
     /// </summary>
@@ -45,7 +47,7 @@ public class GTimer : Timer
     {
     }
 
-    /// <inheritdoc cref="GTimer.GTimer(double)"/>
+    /// <inheritdoc cref="GTimer(double)"/>
     public GTimer(TimeSpan interval) : this(interval.TotalMilliseconds)
     {
     }
@@ -55,6 +57,7 @@ public class GTimer : Timer
     /// </summary>
     public GTimer(double interval) : base(interval)
     {
+        LastResetTime = CreationTime;
         Elapsed += (_, e) => LastResetTime = e.SignalTime;
     }
 }
