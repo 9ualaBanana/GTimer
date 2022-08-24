@@ -60,4 +60,16 @@ public class GTimer : Timer
         LastResetTime = CreationTime;
         Elapsed += (_, e) => LastResetTime = e.SignalTime;
     }
+
+
+
+    /// <summary>
+    /// Resets the elapsed time.
+    /// </summary>
+    public void Restart()
+    {
+        Stop();
+        Start();
+        LastResetTime = DateTimeOffset.Now;
+    }
 }
