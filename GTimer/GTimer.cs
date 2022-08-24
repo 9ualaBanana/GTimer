@@ -43,7 +43,7 @@ public class GTimer : Timer
     /// <summary>
     /// Initializes a new instance of the <see cref='GTimer'/> class, with the properties set to initial values.
     /// </summary>
-    public GTimer() : this(default(double))
+    public GTimer() : this(100)
     {
     }
 
