@@ -3,7 +3,7 @@
 /// <summary>
 /// Represents a time interval that can be implicitly casted from/to <see cref="double"/> or <see cref="TimeSpan"/>.
 /// </summary>
-public record Interval
+public struct Interval
 {
     readonly double _asMilliseconds;
     readonly TimeSpan _asTimeSpan;
