@@ -30,8 +30,9 @@ public class GTimer : Timer
 {
     public readonly DateTimeOffset CreationTime = DateTimeOffset.Now;
     public DateTimeOffset LastResetTime { get; private set; }
-    public TimeSpan ElapsedSinceCreation => DateTimeOffset.Now - CreationTime;
-    public TimeSpan ElapsedSinceReset => DateTimeOffset.Now - LastResetTime;
+    public Interval ElapsedSinceCreation => DateTimeOffset.Now - CreationTime;
+    public Interval ElapsedSinceReset => DateTimeOffset.Now - LastResetTime;
+    public Interval TimeLeftUntilReset => Interval - ElapsedSinceReset;
     public TimeSpan IntervalAsTimeSpan
     {
         get => new((long)Interval * TimeSpan.TicksPerMillisecond);
