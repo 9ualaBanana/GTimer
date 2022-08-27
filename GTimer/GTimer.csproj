@@ -9,10 +9,11 @@
 	<Version>1.2.1</Version>
 	<Authors>9ualaBanana</Authors>
 	<Company>9ualaBanana</Company>
+	<Copyright>9ualaBanana</Copyright>
 	<PackageLicenseExpression>MIT</PackageLicenseExpression>
 	<Description>Timer with useful additional functionality and TimeSpan support.</Description>
 	<RepositoryUrl>https://github.com/9ualaBanana/GTimer</RepositoryUrl>
-	<PackageTags>elapsing; interval; callback; time; stopwatch; timer; library; timespan; datetimeoffset; creation-time; last-reset-time;</PackageTags>
+	<PackageTags>elapsing; interval; callback; time; stopwatch; timer; library; timespan; datetimeoffset; creation-time; last-reset-time; restart;</PackageTags>
 	<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 	<GenerateDocumentationFile>True</GenerateDocumentationFile>
   </PropertyGroup>
