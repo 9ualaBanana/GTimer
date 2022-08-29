@@ -38,6 +38,7 @@ public class GTimer : Timer
         get => new((long)Interval * TimeSpan.TicksPerMillisecond);
         set => Interval = value.TotalMilliseconds;
     }
+    public TimeSpan Uptime => DateTimeOffset.Now - CreationTime;
 
 
 
