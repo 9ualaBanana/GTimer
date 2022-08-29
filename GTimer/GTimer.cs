@@ -38,7 +38,15 @@ public class GTimer : Timer
         get => new((long)Interval * TimeSpan.TicksPerMillisecond);
         set => Interval = value.TotalMilliseconds;
     }
-    public TimeSpan Uptime => DateTimeOffset.Now - CreationTime;
+    public TimeSpan Uptime => Enabled ?
+        _uptimeUptoLastStop + _UptimeSinceLastStart:
+        _uptimeUptoLastStop;
+
+    TimeSpan _uptimeUptoLastStop = TimeSpan.Zero;
+
+    TimeSpan _UptimeSinceLastStart => DateTimeOffset.Now - _lastStartTime;
+
+    DateTimeOffset _lastStartTime;
 
 
 
@@ -59,6 +67,25 @@ public class GTimer : Timer
     }
 
 
+
+    /// <summary>
+    /// Starts raising the <see cref="Timer.Elapsed"/> event by setting <see cref='Timer.Enabled'/> to <see langword = 'true'/>.
+    /// </summary>
+    /// <exception cref="ArgumentOutOfRangeException"/>
+    public new void Start()
+    {
+        base.Start();
+        if (!Enabled) _lastStartTime = DateTimeOffset.Now;
+    }
+
+    /// <summary>
+    /// Stops raising the <see cref="Timer.Elapsed"/> event by setting <see cref='Timer.Enabled'/> to <see langword = 'false'/>.
+    /// </summary>
+    public new void Stop()
+    {
+        if (Enabled) _uptimeUptoLastStop += DateTimeOffset.Now - _lastStartTime;
+        base.Stop();
+    }
 
     /// <summary>
     /// Resets the elapsed time.
