@@ -48,12 +48,11 @@ public class GTimer : Timer
 
     DateTimeOffset _lastStartTime;
 
-
-
+    #region Constructors
     /// <summary>
     /// Initializes a new instance of the <see cref='GTimer'/> class, with the properties set to initial values.
     /// </summary>
-    public GTimer() : this(100)
+    public GTimer() : this(Timers.Interval.Default)
     {
     }
 
@@ -65,7 +64,7 @@ public class GTimer : Timer
         LastResetTime = CreationTime;
         Elapsed += (_, e) => LastResetTime = e.SignalTime;
     }
-
+    #endregion
 
 
     /// <summary>
@@ -74,7 +73,12 @@ public class GTimer : Timer
     /// <exception cref="ArgumentOutOfRangeException"/>
     public new void Start()
     {
-        if (!Enabled) _lastStartTime = DateTimeOffset.Now;
+        if (!Enabled)
+        {
+            bool isBeingReset = _lastStartTime != default;
+            _lastStartTime = DateTimeOffset.Now;
+            if (isBeingReset) LastResetTime = _lastStartTime;
+        }
         base.Start();
     }
 
