@@ -74,8 +74,8 @@ public class GTimer : Timer
     /// <exception cref="ArgumentOutOfRangeException"/>
     public new void Start()
     {
-        base.Start();
         if (!Enabled) _lastStartTime = DateTimeOffset.Now;
+        base.Start();
     }
 
     /// <summary>
