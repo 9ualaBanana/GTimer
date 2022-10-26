@@ -41,12 +41,10 @@ public class GTimer : Timer
     public TimeSpan Uptime => Enabled ?
         _uptimeUptoLastStop + _UptimeSinceLastStart:
         _uptimeUptoLastStop;
-
     TimeSpan _uptimeUptoLastStop = TimeSpan.Zero;
-
     TimeSpan _UptimeSinceLastStart => DateTimeOffset.Now - _lastStartTime;
-
     DateTimeOffset _lastStartTime;
+
 
     #region Constructors
     /// <summary>
@@ -62,7 +60,7 @@ public class GTimer : Timer
     public GTimer(Interval interval) : base(interval)
     {
         LastResetTime = CreationTime;
-        Elapsed += (_, e) => LastResetTime = e.SignalTime;
+        base.Elapsed += (_, e) => LastResetTime = e.SignalTime;
     }
     #endregion
 
